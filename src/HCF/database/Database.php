@@ -2,32 +2,47 @@
 
 declare(strict_types=1);
 
-namespace HCF\Database;
+namespace HCF\Data;
 
 use SQLite3;
+use SQLite3Result;
 use HCF\Loader;
 
 class Database
 {
     /** @var SQLite3 */
-    private $db;
+    private static $db;
 
     /** @var Loader */
-    private $plugin;
+    private static $plugin;
 
-    public function __construct(Loader $plugin, string $dbName)
+    public static function setPlugin(Loader $plugin): SQLite3
     {
-        $this->plugin = $plugin;
-        $this->db = new SQLite3($plugin->getDataFolder() . $dbName . ".db");
+        Database::$plugin = $plugin;
+        Database::$db = new SQLite3("hcf.db");
+        return Database::$db;
     }
 
-    public function createDB($dbName): SQLite3
+    public static function init($dbName): SQLite3
     {
-		$this->query("CREATE TABLE IF NOT EXISTS players(username VARCHAR(20), currentTime INT);");
+		Database::query("
+			CREATE TABLE IF NOT EXISTS players(
+            username VARCHAR(20) PRIMARY KEY, 
+            ip TEXT,
+            deviceID TEXT,
+            xuid INT,
+            hits INT, 
+            xp INT,
+            money INT,
+			power INT,
+            kills INT, 
+            deaths INT,
+            tags TEXT                                        
+        );");
     }
 
-    public function query(string $q)
-    {
-        return $this->db->exec($q);
+    public static function query(string $q): SQLite3Result
+	{
+        return Database::$db->query($q);
     }
 }
