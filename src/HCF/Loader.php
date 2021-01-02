@@ -20,7 +20,7 @@ class Loader extends PluginBase
     {
         $this->listener = new Listener($this);
         $this->getServer()->getLogger()->info(C::GREEN . "HCF Core has been enabled");
-        $this->db = new Database($this, 'hcf'); // We'll initalize with the players since its the core DB
+        $this->db = new Database($this, 'hcf');
 
     }
 }
