@@ -21,10 +21,6 @@ class Listener implements EventListener
 
 	public function onJoin(PlayerJoinEvent $e): void
 	{
-		$username = $e->getPlayer()->getName();
-		$time = time();
-		$this->plugin->getServer()->getLogger()->notice(C::GREEN . "User ($username) has joined the server;");
-		$this->plugin->db->query("INSERT INTO players(username, currentTime) VALUES('$username', $time);");
-		$this->plugin->getServer()->getLogger()->info(C::GREEN . "Successfully wrote user ($username) into the database;");
+		
 	}
 }
