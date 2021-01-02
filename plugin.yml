@@ -1,0 +1,6 @@
+name: HCF
+main: HCF\Loader
+api: 3.0.0
+version: 1.0.0
+author: CqdetXD
+description: A HCF Plugin
