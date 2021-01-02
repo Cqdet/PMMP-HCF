@@ -49,9 +49,9 @@ class HCFFaction {
 		if($raw['home']) {
 			// We will store Vector3s as 'x,y,z'
 			[$x, $y, $z] = explode(",",$raw['home']);
-			$this->home	= new Vector3($x, $y, $z);
+			$this->home = new Vector3($x, $y, $z);
 		} else {
-			$this->home	 = new Vector3();
+			$this->home = new Vector3();
 		}
 		$this->toInvite = $raw['toInvite'] ? (array)explode(",", $raw['toInvite']) : [];
 		$this->toAlly = $raw['toAlly'] ? (array)explode(",", $raw['toAlly']) : [];
