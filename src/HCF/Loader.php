@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HCF;
 
-use HCF\Database\Database;
+use HCF\Data\Database;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as C;
 
@@ -20,7 +20,6 @@ class Loader extends PluginBase
     {
         $this->listener = new Listener($this);
         $this->getServer()->getLogger()->info(C::GREEN . "HCF Core has been enabled");
-        $this->db = new Database($this, 'hcf');
-
+        $this->db = Database::setPlugin($this);
     }
 }
